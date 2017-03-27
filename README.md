@@ -20,8 +20,23 @@ This project will have the game title at the top of the window. In the middle wi
 ![BrickOut wireframe][wireframe]
 
 ## Architecture and Technology
+BrickOut will require the following technologies:
+* JavaScript and jQuery for Game logic
+* Easel.js with HTML 5 for rendering the DOM and game elements
+* Webpack to consolidate the various scripts into a bundle
+
+Along with the entry file, there are three additional scripts:
+
+`screen.js`: This script will manipulate and render the paddle, ball, and bricks elements.
+
+`paddle.js`: This script will handle user input and move the paddle accordingly.
+
+`ball.js`: This script will alter the ball trajectory, bounces, and contact with paddle/bricks.
+
+`brick.js`: This script will house the logic of clearing when in contact with the ball, and occasionally dropping power-ups (see Bonus Features)
 
 ## Implementation Timeline
+
 
 ## Bonus Features
 

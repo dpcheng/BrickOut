@@ -22,7 +22,8 @@ This project will have the game title at the top of the window. In the middle wi
 ## Architecture and Technology
 BrickOut will require the following technologies:
 * JavaScript and jQuery for Game logic
-* Easel.js with HTML 5 for rendering the DOM and game elements
+* Easel.js with HTML 5 Canvas for rendering the DOM and game elements
+* Keymapper for handling user input
 * Webpack to consolidate the various scripts into a bundle
 
 Along with the entry file, there are three additional scripts:
@@ -36,7 +37,24 @@ Along with the entry file, there are three additional scripts:
 `brick.js`: This script will house the logic of clearing when in contact with the ball, and occasionally dropping power-ups (see Bonus Features)
 
 ## Implementation Timeline
-**Day 1**:
+**Day 1**: Set up webpack and install `Easel.js` and `Keymapper`. Write the entry file and skeleton of the 4 scripts. Learn how to use `Easel.js` and `Keymapper`.
+* Have a site that uses the bundle script with all 4 scripts incorporated
+* Render the game screen and paddle
+* Be able to move the paddle with user input
+
+**Day 2**: Add the ball and bricks to the game
+* Add a ball that bounces off each surface
+* Have different colored bricks at the top of the screen
+
+**Day 3**: Code the rules into the game
+* Bricks disappear when the ball hits them
+* Ball disappears when hitting the bottom of the screen. Reduces the paddle count
+* Game ends when all paddles are gone or all bricks cleared
+
+**Day 4**: Style and add additional content to the page
+* Style the paddle, balls, bricks, and background of the game
+* Add controls and rules modal
+* Include the Github and LinkedIn links
 
 ## Bonus Features
 Once I complete the MVPs, I may update the game with these features:

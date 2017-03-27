@@ -5,19 +5,24 @@ BrickOut is inspired by the video game Breakout. Breakout was released by Atari 
 
 ## Functionality & MVP
 In BrickOut, the user is able to:
-[] Start, pause, or reset the game
-[] Move the paddle with the left/right arrows, or direct the paddle using the mouse
-[] Bounce the ball by placing the paddle in the ball's path
-[] Clear bricks when in contact with the bouncing ball
+- [ ] Start, pause, or reset the game
+- [ ] Move the paddle with the left/right arrows, or direct the paddle using the mouse
+- [ ] Bounce the ball by placing the paddle in the ball's path
+- [ ] Clear bricks when in contact with the bouncing ball
 
 This project will also include:
-[] A modal describing the rules of BrickOut
-[] A production README
+- [ ] A modal describing the rules of BrickOut
+- [ ] A production README
 
 ## Wireframes
+This project will have the game title at the top of the window. In the middle will be the game screen. Below the game will be a picture of the controls and a button to open a How To Play modal. The modal will explain the game rules and power-ups (see Bonus Features). Next to the controls will be links to my LinkedIn and Github.
+
+![BrickOut wireframe][wireframe]
 
 ## Architecture and Technology
 
 ## Implementation Timeline
 
 ## Bonus Features
+
+[wireframe]: ./wireframe.png

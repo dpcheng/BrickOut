@@ -6,7 +6,7 @@ BrickOut is inspired by the video game Breakout. Breakout was released by Atari 
 ## Functionality & MVP
 In BrickOut, the user is able to:
 - [ ] Start, pause, or reset the game
-- [ ] Move the paddle with the left/right arrows, or direct the paddle using the mouse
+- [ ] Move the paddle with the left/right arrows, or direct the paddle using the mouse (Bonus Feature)
 - [ ] Bounce the ball by placing the paddle in the ball's path
 - [ ] Clear bricks when in contact with the bouncing ball
 
@@ -36,8 +36,16 @@ Along with the entry file, there are three additional scripts:
 `brick.js`: This script will house the logic of clearing when in contact with the ball, and occasionally dropping power-ups (see Bonus Features)
 
 ## Implementation Timeline
-
+**Day 1**:
 
 ## Bonus Features
+Once I complete the MVPs, I may update the game with these features:
+* Control the paddle using the mouse instead keyboard presses
+* Bricks will occasionally drop power-ups. If the paddle touches the power-up, the gameplay will be altered. Potential power-ups are:
+  * Longer paddle: Increase the size of the paddle
+  * Sticky paddle: Can 'catch' the ball, reposition the paddle, and press the button to release the ball at will
+  * Multi-ball: The ball splits into 3. The player loses the paddle when all 3 balls have touched the bottom of the screen
+  * Strong ball: The ball doesn't bounce on contact with the brick, but passes through and clears any bricks in its path
+
 
 [wireframe]: ./wireframe.png

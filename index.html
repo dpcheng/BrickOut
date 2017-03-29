@@ -5,7 +5,7 @@
     <title>BrickOut</title>
   </head>
   <body>
-    <canvas id="game-canvas" ></canvas>
+    <canvas id="game-canvas" width="800" height="800"></canvas>
     <script src="./keymaster.js"></script>
     <script src="./bundle.js" charset="utf-8"></script>
     <script src="https://code.createjs.com/easeljs-0.8.2.min.js"></script>
@@ -14,9 +14,7 @@
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        height: 100%;
-        width: 100%;
-        background-color: grey;
+        z-index: -5;
       }
     </style>
   </body>

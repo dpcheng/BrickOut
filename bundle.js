@@ -76,10 +76,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 document.addEventListener("DOMContentLoaded", () => {
-    const canvas = document.getElementById("game-canvas");
-    const ctx = canvas.getContext("2d");
     const stage = new createjs.Stage("game-canvas");
-    const screen = new __WEBPACK_IMPORTED_MODULE_0__screen_js__["a" /* default */](ctx, stage);
+    const screen = new __WEBPACK_IMPORTED_MODULE_0__screen_js__["a" /* default */](stage);
     screen.play();
   });
 
@@ -97,8 +95,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 class Screen {
-  constructor(ctx, stage) {
-    this.ctx = ctx;
+  constructor(stage) {
     this.stage = stage;
   }
 
@@ -107,6 +104,7 @@ class Screen {
     for (let i = 0; i < dimensions.length - 1; i++) {
       new __WEBPACK_IMPORTED_MODULE_0__brick_js__["a" /* default */](dimensions[i], dimensions[i + 1], this.stage);
     }
+    debugger
   }
 }
 
@@ -141,7 +139,14 @@ class Brick {
   }
 
   draw() {
-    
+    let rectangle = new createjs.Shape();
+    rectangle.graphics.beginFill("red").drawCircle(0, 0, 40);
+    //Set position of Shape instance.
+    rectangle.x = rectangle.y = 50;
+    //Add Shape instance to stage display list.
+    this.stage.addChild(rectangle);
+    //Update stage will render next frame
+    this.stage.update();
   }
 }
 

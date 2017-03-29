@@ -72,14 +72,94 @@
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-throw new Error("Cannot find module \".screen\"");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__screen_js__ = __webpack_require__(1);
 
 
 document.addEventListener("DOMContentLoaded", () => {
     const canvas = document.getElementById("game-canvas");
     const ctx = canvas.getContext("2d");
-    const screen = new __WEBPACK_IMPORTED_MODULE_0__screen___default.a(ctx);
+    const stage = new createjs.Stage("game-canvas");
+    const screen = new __WEBPACK_IMPORTED_MODULE_0__screen_js__["a" /* default */](ctx, stage);
+    screen.play();
   });
+
+
+/***/ }),
+/* 1 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__brick_js__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ball_js__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__paddle_js__ = __webpack_require__(4);
+
+
+
+
+class Screen {
+  constructor(ctx, stage) {
+    this.ctx = ctx;
+    this.stage = stage;
+  }
+
+  play() {
+    const dimensions = [0, 12.5, 25, 37.5, 50, 62.5, 75, 87.5, 100];
+    for (let i = 0; i < dimensions.length - 1; i++) {
+      new __WEBPACK_IMPORTED_MODULE_0__brick_js__["a" /* default */](dimensions[i], dimensions[i + 1], this.stage);
+    }
+  }
+}
+
+/* harmony default export */ __webpack_exports__["a"] = Screen;
+
+
+/***/ }),
+/* 2 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+class Ball {
+  constructor() {
+
+  }
+}
+
+/* unused harmony default export */ var _unused_webpack_default_export = Ball;
+
+
+/***/ }),
+/* 3 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+class Brick {
+  constructor(leftCoord, rightCoord, stage) {
+    this.leftCoord = leftCoord;
+    this.rightCoord = rightCoord;
+    this.stage = stage;
+    this.draw();
+  }
+
+  draw() {
+    
+  }
+}
+
+/* harmony default export */ __webpack_exports__["a"] = Brick;
+
+
+/***/ }),
+/* 4 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+class Paddle {
+  constructor() {
+    
+  }
+}
+
+/* unused harmony default export */ var _unused_webpack_default_export = Paddle;
 
 
 /***/ })

@@ -76,10 +76,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 document.addEventListener("DOMContentLoaded", () => {
-    const stage = new createjs.Stage("game-canvas");
-    const screen = new __WEBPACK_IMPORTED_MODULE_0__screen_js__["a" /* default */](stage);
-    screen.play();
-  });
+  const canvas = document.getElementById("game-canvas");
+  const ctx = canvas.getContext("2d");
+  const stage = new createjs.Stage("game-canvas");
+  const screen = new __WEBPACK_IMPORTED_MODULE_0__screen_js__["a" /* default */](ctx, stage);
+  screen.play();
+});
 
 
 /***/ }),
@@ -95,16 +97,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 class Screen {
-  constructor(stage) {
+  constructor(ctx, stage) {
+    this.ctx = ctx;
     this.stage = stage;
   }
 
   play() {
     const dimensions = [0, 12.5, 25, 37.5, 50, 62.5, 75, 87.5, 100];
     for (let i = 0; i < dimensions.length - 1; i++) {
-      new __WEBPACK_IMPORTED_MODULE_0__brick_js__["a" /* default */](dimensions[i], dimensions[i + 1], this.stage);
+      new __WEBPACK_IMPORTED_MODULE_0__brick_js__["a" /* default */](dimensions[i], this.stage);
     }
-    debugger
   }
 }
 
@@ -131,20 +133,16 @@ class Ball {
 
 "use strict";
 class Brick {
-  constructor(leftCoord, rightCoord, stage) {
+  constructor(leftCoord, stage) {
     this.leftCoord = leftCoord;
-    this.rightCoord = rightCoord;
     this.stage = stage;
     this.draw();
   }
 
   draw() {
-    let rectangle = new createjs.Shape();
-    rectangle.graphics.beginFill("red").drawCircle(0, 0, 40);
-    //Set position of Shape instance.
-    rectangle.x = rectangle.y = 50;
-    //Add Shape instance to stage display list.
-    this.stage.addChild(rectangle);
+    let shape = new createjs.Shape();
+    shape.graphics.beginFill("#ff0000").drawRect(this.leftCoord * 10, 100, 120, 30);
+    this.stage.addChild(shape);
     //Update stage will render next frame
     this.stage.update();
   }

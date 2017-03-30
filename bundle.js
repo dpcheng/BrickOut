@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "";
 
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 0);
+/******/ 	return __webpack_require__(__webpack_require__.s = 4);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -71,27 +71,9 @@
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__screen_js__ = __webpack_require__(1);
-
-
-document.addEventListener("DOMContentLoaded", () => {
-  const canvas = document.getElementById("game-canvas");
-  const ctx = canvas.getContext("2d");
-  const stage = new createjs.Stage("game-canvas");
-  const screen = new __WEBPACK_IMPORTED_MODULE_0__screen_js__["a" /* default */](ctx, stage);
-  screen.play();
-});
-
-
-/***/ }),
-/* 1 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__brick_js__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ball_js__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__paddle_js__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__brick_js__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ball_js__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__paddle_js__ = __webpack_require__(3);
 
 
 
@@ -104,9 +86,13 @@ class Screen {
 
   play() {
     const dimensions = [0, 12.5, 25, 37.5, 50, 62.5, 75, 87.5, 100];
-    for (let i = 0; i < dimensions.length - 1; i++) {
-      new __WEBPACK_IMPORTED_MODULE_0__brick_js__["a" /* default */](dimensions[i], this.stage);
+    const heights = [50, 85, 120, 155, 190, 225];
+    for (let height = 0; height < heights.length; height++) {
+      for (let i = 0; i < dimensions.length - 1; i++) {
+        new __WEBPACK_IMPORTED_MODULE_0__brick_js__["a" /* default */](dimensions[i], heights[height], this.stage);
+      }
     }
+    this.stage.update();
   }
 }
 
@@ -114,7 +100,7 @@ class Screen {
 
 
 /***/ }),
-/* 2 */
+/* 1 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -128,23 +114,22 @@ class Ball {
 
 
 /***/ }),
-/* 3 */
+/* 2 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 class Brick {
-  constructor(leftCoord, stage) {
+  constructor(leftCoord, height, stage) {
     this.leftCoord = leftCoord;
+    this.height = height;
     this.stage = stage;
     this.draw();
   }
 
   draw() {
     let shape = new createjs.Shape();
-    shape.graphics.beginFill("#ff0000").drawRect(this.leftCoord * 10, 100, 120, 30);
+    shape.graphics.beginFill("#ff0000").drawRect(this.leftCoord * 10, this.height, 120, 30);
     this.stage.addChild(shape);
-    //Update stage will render next frame
-    this.stage.update();
   }
 }
 
@@ -152,7 +137,7 @@ class Brick {
 
 
 /***/ }),
-/* 4 */
+/* 3 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -163,6 +148,24 @@ class Paddle {
 }
 
 /* unused harmony default export */ var _unused_webpack_default_export = Paddle;
+
+
+/***/ }),
+/* 4 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__screen_js__ = __webpack_require__(0);
+
+
+document.addEventListener("DOMContentLoaded", () => {
+  const canvas = document.getElementById("game-canvas");
+  const ctx = canvas.getContext("2d");
+  const stage = new createjs.Stage("game-canvas");
+  const screen = new __WEBPACK_IMPORTED_MODULE_0__screen_js__["a" /* default */](ctx, stage);
+  screen.play();
+});
 
 
 /***/ })

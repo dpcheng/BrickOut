@@ -92,6 +92,7 @@ class Screen {
         new __WEBPACK_IMPORTED_MODULE_0__brick_js__["a" /* default */](dimensions[i], heights[height], this.stage);
       }
     }
+    const paddle = new __WEBPACK_IMPORTED_MODULE_2__paddle_js__["a" /* default */](this.stage);
     this.stage.update();
   }
 }
@@ -142,12 +143,24 @@ class Brick {
 
 "use strict";
 class Paddle {
-  constructor() {
-    
+  constructor(stage) {
+    this.stage = stage;
+    this.leftCoord = 0;
+    this.draw();
+  }
+
+  draw() {
+    let shape = new createjs.Shape();
+    shape.graphics.beginFill("blue").drawRect(this.leftCoord, 600, 150, 20);
+    this.stage.addChild(shape);
+  }
+
+  move(direction) {
+
   }
 }
 
-/* unused harmony default export */ var _unused_webpack_default_export = Paddle;
+/* harmony default export */ __webpack_exports__["a"] = Paddle;
 
 
 /***/ }),

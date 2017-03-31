@@ -82,18 +82,25 @@ class Screen {
   constructor(ctx, stage) {
     this.ctx = ctx;
     this.stage = stage;
+    this.render = this.render.bind(this);
+    this.paddle = new __WEBPACK_IMPORTED_MODULE_2__paddle_js__["a" /* default */](this.ctx);
+
   }
 
   play() {
+    setInterval(this.render, 10);
+  }
+
+  render() {
+    this.ctx.clearRect(0, 0, 1000, 1000);
     const dimensions = [0, 12.5, 25, 37.5, 50, 62.5, 75, 87.5, 100];
     const heights = [50, 85, 120, 155, 190, 225];
     for (let height = 0; height < heights.length; height++) {
       for (let i = 0; i < dimensions.length - 1; i++) {
-        new __WEBPACK_IMPORTED_MODULE_0__brick_js__["a" /* default */](dimensions[i], heights[height], this.stage);
+        new __WEBPACK_IMPORTED_MODULE_0__brick_js__["a" /* default */](dimensions[i], heights[height], this.ctx);
       }
     }
-    const paddle = new __WEBPACK_IMPORTED_MODULE_2__paddle_js__["a" /* default */](this.stage);
-    this.stage.update();
+    this.paddle.draw();
   }
 }
 
@@ -120,17 +127,16 @@ class Ball {
 
 "use strict";
 class Brick {
-  constructor(leftCoord, height, stage) {
+  constructor(leftCoord, height, ctx) {
     this.leftCoord = leftCoord;
     this.height = height;
-    this.stage = stage;
+    this.ctx = ctx;
     this.draw();
   }
 
   draw() {
-    let shape = new createjs.Shape();
-    shape.graphics.beginFill("#ff0000").drawRect(this.leftCoord * 10, this.height, 120, 30);
-    this.stage.addChild(shape);
+    this.ctx.fillStyle="#FF0000";
+    this.ctx.fillRect(this.leftCoord * 10, this.height, 120, 30);
   }
 }
 
@@ -143,20 +149,28 @@ class Brick {
 
 "use strict";
 class Paddle {
-  constructor(stage) {
-    this.stage = stage;
+  constructor(ctx) {
+    this.ctx = ctx;
     this.leftCoord = 0;
-    this.draw();
+    document.addEventListener("click", this.handleRight.bind(this));
+    document.addEventListener("keyleft", this.handleLeft.bind(this));
   }
 
   draw() {
-    let shape = new createjs.Shape();
-    shape.graphics.beginFill("blue").drawRect(this.leftCoord, 600, 150, 20);
-    this.stage.addChild(shape);
+    this.ctx.fillStyle="blue";
+    this.ctx.fillRect(this.leftCoord, 700, 150, 20);
   }
 
   move(direction) {
 
+  }
+
+  handleRight(e) {
+    this.leftCoord += 10;
+  }
+
+  handleLeft(e) {
+    this.leftCoord -= 10;
   }
 }
 

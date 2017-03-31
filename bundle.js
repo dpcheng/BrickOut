@@ -88,7 +88,7 @@ class Screen {
   }
 
   play() {
-    setInterval(this.render, 10);
+    setInterval(this.render, 1);
   }
 
   render() {
@@ -152,8 +152,10 @@ class Paddle {
   constructor(ctx) {
     this.ctx = ctx;
     this.leftCoord = 0;
-    document.addEventListener("click", this.handleRight.bind(this));
-    document.addEventListener("keyleft", this.handleLeft.bind(this));
+    this.canvas = document.getElementById("game-canvas");
+    this.canvas.addEventListener("mousemove", this.handleHover.bind(this));
+    key("right", this.handleRight.bind(this));
+    key("left", this.handleLeft.bind(this));
   }
 
   draw() {
@@ -163,6 +165,10 @@ class Paddle {
 
   move(direction) {
 
+  }
+
+  handleHover(e) {
+    this.leftCoord = e.screenX - 75;
   }
 
   handleRight(e) {

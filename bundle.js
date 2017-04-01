@@ -84,7 +84,6 @@ class Screen {
     this.stage = stage;
     this.render = this.render.bind(this);
     this.paddle = new __WEBPACK_IMPORTED_MODULE_2__paddle_js__["a" /* default */](this.ctx);
-
   }
 
   play() {
@@ -172,11 +171,17 @@ class Paddle {
   }
 
   handleRight(e) {
-    this.leftCoord += 10;
+    this.leftCoord += 150;
+    if (this.leftCoord > 850) {
+      this.leftCoord = 850;
+    }
   }
 
   handleLeft(e) {
-    this.leftCoord -= 10;
+    this.leftCoord -= 150;
+    if (this.leftCoord < 0) {
+      this.leftCoord = 0;
+    }
   }
 }
 

@@ -79,9 +79,8 @@
 
 
 class Screen {
-  constructor(ctx, stage) {
+  constructor(ctx) {
     this.ctx = ctx;
-    this.stage = stage;
     this.render = this.render.bind(this);
     this.paddle = new __WEBPACK_IMPORTED_MODULE_2__paddle_js__["a" /* default */](this.ctx);
   }
@@ -153,8 +152,6 @@ class Paddle {
     this.leftCoord = 0;
     this.canvas = document.getElementById("game-canvas");
     this.canvas.addEventListener("mousemove", this.handleHover.bind(this));
-    key("right", this.handleRight.bind(this));
-    key("left", this.handleLeft.bind(this));
   }
 
   draw() {
@@ -162,26 +159,8 @@ class Paddle {
     this.ctx.fillRect(this.leftCoord, 700, 150, 20);
   }
 
-  move(direction) {
-
-  }
-
   handleHover(e) {
     this.leftCoord = e.screenX - 75;
-  }
-
-  handleRight(e) {
-    this.leftCoord += 150;
-    if (this.leftCoord > 850) {
-      this.leftCoord = 850;
-    }
-  }
-
-  handleLeft(e) {
-    this.leftCoord -= 150;
-    if (this.leftCoord < 0) {
-      this.leftCoord = 0;
-    }
   }
 }
 
@@ -200,8 +179,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 document.addEventListener("DOMContentLoaded", () => {
   const canvas = document.getElementById("game-canvas");
   const ctx = canvas.getContext("2d");
-  const stage = new createjs.Stage("game-canvas");
-  const screen = new __WEBPACK_IMPORTED_MODULE_0__screen_js__["a" /* default */](ctx, stage);
+  const screen = new __WEBPACK_IMPORTED_MODULE_0__screen_js__["a" /* default */](ctx);
   screen.play();
 });
 

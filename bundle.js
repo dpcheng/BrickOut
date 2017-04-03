@@ -83,22 +83,29 @@ class Screen {
     this.ctx = ctx;
     this.render = this.render.bind(this);
     this.paddle = new __WEBPACK_IMPORTED_MODULE_2__paddle_js__["a" /* default */](this.ctx);
+    this.bricks = [];
+    this.createBricks();
   }
 
   play() {
     setInterval(this.render, 1);
   }
 
-  render() {
-    this.ctx.clearRect(0, 0, 1000, 1000);
+  createBricks() {
     const dimensions = [0, 12.5, 25, 37.5, 50, 62.5, 75, 87.5, 100];
     const heights = [50, 85, 120, 155, 190, 225];
     for (let height = 0; height < heights.length; height++) {
       for (let i = 0; i < dimensions.length - 1; i++) {
-        new __WEBPACK_IMPORTED_MODULE_0__brick_js__["a" /* default */](dimensions[i], heights[height], this.ctx);
+        this.bricks.push(new __WEBPACK_IMPORTED_MODULE_0__brick_js__["a" /* default */](dimensions[i], heights[height], this.ctx));
       }
     }
+  }
+
+  render() {
+    this.ctx.clearRect(0, 0, 1000, 1000);
     this.paddle.draw();
+
+    this.bricks.forEach( brick => brick.draw() );
   }
 }
 
@@ -129,7 +136,7 @@ class Brick {
     this.leftCoord = leftCoord;
     this.height = height;
     this.ctx = ctx;
-    this.draw();
+    this.borders = [this.leftCoord, this.leftCoord + 120, this.height, this.height + 30];
   }
 
   draw() {

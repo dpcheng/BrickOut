@@ -85,10 +85,12 @@ class Screen {
     this.paddle = new __WEBPACK_IMPORTED_MODULE_2__paddle_js__["a" /* default */](this.ctx);
     this.bricks = [];
     this.createBricks();
+    this.ball = new __WEBPACK_IMPORTED_MODULE_1__ball_js__["a" /* default */](this.ctx);
   }
 
   play() {
-    setInterval(this.render, 1);
+    this.ball.launch();
+    setInterval(this.render, 10);
   }
 
   createBricks() {
@@ -104,7 +106,8 @@ class Screen {
   render() {
     this.ctx.clearRect(0, 0, 1000, 1000);
     this.paddle.draw();
-
+    this.ball.move();
+    this.ball.draw();
     this.bricks.forEach( brick => brick.draw() );
   }
 }
@@ -118,12 +121,34 @@ class Screen {
 
 "use strict";
 class Ball {
-  constructor() {
+  constructor(ctx) {
+    this.ctx = ctx;
+    this.posX = 500;
+    this.posY = 715;
+    this.velocity = [0,0];
+  }
 
+  move() {
+    this.posX += this.velocity[0];
+    this.posY += this.velocity[1];
+  }
+
+  launch() {
+    this.velocity = [1,-1];
+  }
+
+  draw() {
+    this.ctx.beginPath();
+    this.ctx.arc(this.posX, this.posY, 10, 0, 2 * Math.PI, false);
+    this.ctx.fillStyle = 'green';
+    this.ctx.fill();
+    this.ctx.lineWidth = 1;
+    this.ctx.strokeStyle = '#003300';
+    this.ctx.stroke();
   }
 }
 
-/* unused harmony default export */ var _unused_webpack_default_export = Ball;
+/* harmony default export */ __webpack_exports__["a"] = Ball;
 
 
 /***/ }),

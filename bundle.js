@@ -94,7 +94,7 @@ class Screen {
   }
 
   createBricks() {
-    const dimensions = [0, 12.5, 25, 37.5, 50, 62.5, 75, 87.5, 100];
+    const dimensions = [0, 125, 250, 375, 500, 625, 750, 875, 1000];
     const heights = [50, 85, 120, 155, 190, 225];
     for (let height = 0; height < heights.length; height++) {
       for (let i = 0; i < dimensions.length - 1; i++) {
@@ -107,6 +107,7 @@ class Screen {
     this.ctx.clearRect(0, 0, 1000, 1000);
     this.paddle.draw();
     this.bricks.forEach( brick => brick.draw() );
+    this.ball.checkContact(this.paddle.borders);
     this.ball.move();
     this.ball.draw();
   }
@@ -162,6 +163,15 @@ class Ball {
   updateBorders() {
     this.borders = [ this.posX - this.radius, this.posX + this.radius, this.posY - this.radius, this.posY + this.radius ];
   }
+
+  checkContact(paddleBorder) {
+    if ((this.borders[0] > paddleBorder[0] && this.borders[1] < paddleBorder[1]) &&
+      ((this.borders[2] > 700 && this.borders[2] < 720) ||
+        (this.borders[3] > 700 && this.borders[3] < 720 ))) {
+      this.velocity[1] = -this.velocity[1];
+    }
+  }
+
 }
 
 /* harmony default export */ __webpack_exports__["a"] = Ball;
@@ -182,7 +192,7 @@ class Brick {
 
   draw() {
     this.ctx.fillStyle="#FF0000";
-    this.ctx.fillRect(this.leftCoord * 10, this.height, 120, 30);
+    this.ctx.fillRect(this.leftCoord, this.height, 120, 30);
   }
 }
 
@@ -198,6 +208,7 @@ class Paddle {
   constructor(ctx) {
     this.ctx = ctx;
     this.leftCoord = 0;
+    this.borders = [this.leftCoord, this.leftCoord + 150, 700, 720];
     this.canvas = document.getElementById("game-canvas");
     this.canvas.addEventListener("mousemove", this.handleHover.bind(this));
   }
@@ -210,6 +221,11 @@ class Paddle {
   handleHover(e) {
     this.leftCoord = e.screenX - 75;
   }
+
+  updateBorders() {
+    this.borders = [this.leftCoord, this.leftCoord + 150, 700, 720];
+  }
+
 }
 
 /* harmony default export */ __webpack_exports__["a"] = Paddle;

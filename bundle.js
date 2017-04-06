@@ -132,9 +132,9 @@ class Ball {
   }
 
   move() {
+    this.wallBounce();
     this.posX += this.velocity[0];
     this.posY += this.velocity[1];
-    this.wallBounce();
   }
 
   launch() {
@@ -165,11 +165,21 @@ class Ball {
   }
 
   checkContact(paddleBorder) {
-    if ((this.borders[0] > paddleBorder[0] && this.borders[1] < paddleBorder[1]) &&
-      ((this.borders[2] > 700 && this.borders[2] < 720) ||
-        (this.borders[3] > 700 && this.borders[3] < 720 ))) {
-      this.velocity[1] = -this.velocity[1];
+    if ( (this.borders[2] > paddleBorder[2] &&
+      this.borders[2] < paddleBorder[3]) ||
+      (this.borders[3] > paddleBorder[2] &&
+      this.borders[3] < paddleBorder[3]) )  {
+
+        if ( (this.borders[0] > paddleBorder[0] &&
+          this.borders[0] < paddleBorder[1]) ||
+          (this.borders[1] > paddleBorder[0] &&
+            this.borders[1] < paddleBorder[1]) ) {
+            this.posY = paddleBorder[2] - this.radius;
+            this.velocity[1] = -this.velocity[1];
+            this.updateBorders();
+        }
     }
+
   }
 
 }
@@ -220,6 +230,7 @@ class Paddle {
 
   handleHover(e) {
     this.leftCoord = e.screenX - 75;
+    this.updateBorders();
   }
 
   updateBorders() {

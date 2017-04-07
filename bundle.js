@@ -110,8 +110,6 @@ class Screen {
     this.bricks.forEach( brick => {
       if (this.ball.checkBrickContact(brick.borders)) {
         brick.borders = [0, 0, 0, 0];
-        brick.height = 0;
-        brick.leftCoord = 0;
         brick.width = 0;
       } else {
         brick.draw();
@@ -147,7 +145,7 @@ class Ball {
   }
 
   launch() {
-    this.velocity = [2,-2];
+    this.velocity = [4,-4];
   }
 
   draw() {
@@ -191,6 +189,7 @@ class Ball {
   }
 
   checkBrickContact(brickBorder) {
+    // [left 0, right 1, top 2, bottom 3]
     if ( (this.borders[2] > brickBorder[2] &&
       this.borders[2] < brickBorder[3]) ||
       (this.borders[3] > brickBorder[2] &&
@@ -200,12 +199,20 @@ class Ball {
           this.borders[0] < brickBorder[1]) ||
           (this.borders[1] > brickBorder[0] &&
             this.borders[1] < brickBorder[1]) ) {
-            this.posY = brickBorder[2] - this.radius;
-            this.velocity[1] = -this.velocity[1];
+
+            if ( ( (this.borders[1] > brickBorder[0] - 2) &&
+              (this.borders[1] < brickBorder[0] + 2) ) ||
+              ( (this.borders[1] > brickBorder[0] - 2) &&
+              (this.borders[1] < brickBorder[0] + 2) ) ) {
+                this.velocity[0] = -this.velocity[0];
+              } else {
+                this.velocity[1] = -this.velocity[1];
+              }
             this.updateBorders();
             return true;
         }
     }
+
     return false;
   }
 

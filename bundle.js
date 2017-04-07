@@ -202,8 +202,8 @@ class Ball {
 
             if ( ( (this.borders[1] > brickBorder[0] - 2) &&
               (this.borders[1] < brickBorder[0] + 2) ) ||
-              ( (this.borders[1] > brickBorder[0] - 2) &&
-              (this.borders[1] < brickBorder[0] + 2) ) ) {
+              ( (this.borders[0] > brickBorder[1] - 2) &&
+              (this.borders[0] < brickBorder[1] + 2) ) ) {
                 this.velocity[0] = -this.velocity[0];
               } else {
                 this.velocity[1] = -this.velocity[1];

@@ -106,8 +106,17 @@ class Screen {
   render() {
     this.ctx.clearRect(0, 0, 1000, 1000);
     this.paddle.draw();
-    this.bricks.forEach( brick => brick.draw() );
-    this.ball.checkContact(this.paddle.borders);
+    this.ball.checkPaddleContact(this.paddle.borders);
+    this.bricks.forEach( brick => {
+      if (this.ball.checkBrickContact(brick.borders)) {
+        brick.borders = [0, 0, 0, 0];
+        brick.height = 0;
+        brick.leftCoord = 0;
+        brick.width = 0;
+      } else {
+        brick.draw();
+      }
+    });
     this.ball.move();
     this.ball.draw();
   }
@@ -164,7 +173,7 @@ class Ball {
     this.borders = [ this.posX - this.radius, this.posX + this.radius, this.posY - this.radius, this.posY + this.radius ];
   }
 
-  checkContact(paddleBorder) {
+  checkPaddleContact(paddleBorder) {
     if ( (this.borders[2] > paddleBorder[2] &&
       this.borders[2] < paddleBorder[3]) ||
       (this.borders[3] > paddleBorder[2] &&
@@ -179,7 +188,25 @@ class Ball {
             this.updateBorders();
         }
     }
+  }
 
+  checkBrickContact(brickBorder) {
+    if ( (this.borders[2] > brickBorder[2] &&
+      this.borders[2] < brickBorder[3]) ||
+      (this.borders[3] > brickBorder[2] &&
+      this.borders[3] < brickBorder[3]) )  {
+
+        if ( (this.borders[0] > brickBorder[0] &&
+          this.borders[0] < brickBorder[1]) ||
+          (this.borders[1] > brickBorder[0] &&
+            this.borders[1] < brickBorder[1]) ) {
+            this.posY = brickBorder[2] - this.radius;
+            this.velocity[1] = -this.velocity[1];
+            this.updateBorders();
+            return true;
+        }
+    }
+    return false;
   }
 
 }
@@ -197,12 +224,13 @@ class Brick {
     this.leftCoord = leftCoord;
     this.height = height;
     this.ctx = ctx;
-    this.borders = [this.leftCoord, this.leftCoord + 120, this.height, this.height + 30];
+    this.width = 30;
+    this.borders = [this.leftCoord, this.leftCoord + 120, this.height, this.height + this.width];
   }
 
   draw() {
     this.ctx.fillStyle="#FF0000";
-    this.ctx.fillRect(this.leftCoord, this.height, 120, 30);
+    this.ctx.fillRect(this.leftCoord, this.height, 120, this.width);
   }
 }
 

@@ -182,6 +182,7 @@ class Ball {
           (this.borders[1] > paddleBorder[0] &&
             this.borders[1] < paddleBorder[1]) ) {
             this.posY = paddleBorder[2] - this.radius;
+            this.velocity[0] = -((paddleBorder[1] - 75 - this.posX) / 75) * 8;
             this.velocity[1] = -this.velocity[1];
             this.updateBorders();
         }

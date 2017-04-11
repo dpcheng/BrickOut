@@ -132,7 +132,7 @@ class Ball {
   constructor(ctx) {
     this.ctx = ctx;
     this.posX = 500;
-    this.posY = 715;
+    this.posY = 692;
     this.radius = 7.5;
     this.borders = [ this.posX - this.radius, this.posX + this.radius, this.posY - this.radius, this.posY + this.radius ];
     this.velocity = [0,0];
@@ -145,7 +145,7 @@ class Ball {
   }
 
   launch() {
-    this.velocity = [4,-4];
+    this.velocity = [0,-4];
   }
 
   draw() {

@@ -86,6 +86,7 @@ class Screen {
     this.bricks = [];
     this.createBricks();
     this.ball = new __WEBPACK_IMPORTED_MODULE_1__ball_js__["a" /* default */](this.ctx);
+    this.points = 0;
   }
 
   play() {
@@ -104,12 +105,19 @@ class Screen {
 
   render() {
     this.ctx.clearRect(0, 0, 1000, 1000);
+
+    this.ctx.font = "30px Arial";
+    this.ctx.fillStyle = "black";
+    this.ctx.textAlign = "center";
+    this.ctx.fillText(`Score: ${this.points}`, 80, 30);
+
     this.paddle.draw();
     this.ball.checkPaddleContact(this.paddle.borders);
     this.bricks.forEach( brick => {
       if (this.ball.checkBrickContact(brick.borders)) {
         brick.borders = [0, 0, 0, 0];
         brick.width = 0;
+        this.points += 100;
       } else {
         brick.draw();
       }

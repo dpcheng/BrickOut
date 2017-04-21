@@ -167,6 +167,10 @@ class Ball {
   }
 
   draw() {
+    if (!this.launched) {
+      this.ctx.font = "30px Arial";
+      this.ctx.fillText("Click to launch ball",10,50);
+    }
     this.ctx.beginPath();
     this.ctx.arc(this.posX, this.posY, this.radius, 0, 2 * Math.PI, false);
     this.ctx.fillStyle = 'green';
@@ -182,9 +186,11 @@ class Ball {
       this.velocity[0] = -this.velocity[0];
     } else if (this.borders[2] < 0 || this.borders[3] > 750) {
       this.velocity[1] = -this.velocity[1];
-    // } else if (this.borders[3] > 750) {
-    //   this.velocty = [0,0];
-    //   this.radius = 0;
+    } else if (this.borders[3] > 740) {
+      this.velocity = [0,0];
+      this.posY = 692;
+      this.posX = 2000;
+      this.launched = false;
     }
   }
 
@@ -204,7 +210,7 @@ class Ball {
             this.borders[1] < paddleBorder[1]) ) {
             this.posY = paddleBorder[2] - this.radius;
             this.velocity[0] = -((paddleBorder[1] - 75 - this.posX) / 75) * 8;
-            this.velocity[1] = -this.velocity[1];
+            this.velocity[1] = -this.velocity[1] - 0.3;
             this.updateBorders();
         }
     }

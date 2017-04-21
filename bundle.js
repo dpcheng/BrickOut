@@ -89,7 +89,6 @@ class Screen {
   }
 
   play() {
-    this.ball.launch();
     setInterval(this.render, 10);
   }
 
@@ -129,13 +128,17 @@ class Screen {
 
 "use strict";
 class Ball {
-  constructor(ctx) {
+  constructor(ctx, launched = false) {
     this.ctx = ctx;
     this.posX = 500;
     this.posY = 692;
     this.radius = 7.5;
+    this.launched = false;
     this.borders = [ this.posX - this.radius, this.posX + this.radius, this.posY - this.radius, this.posY + this.radius ];
     this.velocity = [0,0];
+    this.canvas = document.getElementById("game-canvas");
+    this.canvas.addEventListener("mousemove", this.handleHover.bind(this));
+    this.canvas.addEventListener("click", this.launch.bind(this));
   }
 
   move() {
@@ -145,7 +148,22 @@ class Ball {
   }
 
   launch() {
-    this.velocity = [0,-4];
+    if (!this.launched) {
+      this.launched = true;
+      this.velocity = [0,-4];
+    }
+  }
+
+  handleHover(e) {
+    if (!this.launched) {
+      this.posX = e.screenX;
+      if (this.posX < 0) {
+        this.posX = 0;
+      } else if (this.posX > 1000) {
+        this.posX = 1000;
+      }
+      this.updateBorders();
+    }
   }
 
   draw() {
@@ -194,10 +212,12 @@ class Ball {
 
   checkBrickContact(brickBorder) {
     // [left 0, right 1, top 2, bottom 3]
+    // top or bottom between brick's top or bottom
     if ( (this.borders[2] > brickBorder[2] &&
       this.borders[2] < brickBorder[3]) ||
       (this.borders[3] > brickBorder[2] &&
       this.borders[3] < brickBorder[3]) )  {
+
 
         if ( (this.borders[0] > brickBorder[0] &&
           this.borders[0] < brickBorder[1]) ||
@@ -256,7 +276,7 @@ class Brick {
 class Paddle {
   constructor(ctx) {
     this.ctx = ctx;
-    this.leftCoord = 0;
+    this.leftCoord = 425;
     this.width = 150;
     this.height = 700;
     this.borders = [this.leftCoord, this.leftCoord + this.width, this.height, this.height + 20];

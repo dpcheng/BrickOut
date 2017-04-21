@@ -89,7 +89,7 @@ class Screen {
   }
 
   play() {
-    setInterval(this.render, 10);
+    setInterval(this.render, 1);
   }
 
   createBricks() {
@@ -150,7 +150,7 @@ class Ball {
   launch() {
     if (!this.launched) {
       this.launched = true;
-      this.velocity = [0,-4];
+      this.velocity = [0,-2];
     }
   }
 
@@ -211,8 +211,8 @@ class Ball {
           (this.borders[1] > paddleBorder[0] &&
             this.borders[1] < paddleBorder[1]) ) {
             this.posY = paddleBorder[2] - this.radius;
-            this.velocity[0] = -((paddleBorder[1] - 75 - this.posX) / 75) * 8;
-            this.velocity[1] = -this.velocity[1] - 0.3;
+            this.velocity[0] = -((paddleBorder[1] - 75 - this.posX) / 75) * 3;
+            this.velocity[1] = -this.velocity[1] - 0.15;
             this.updateBorders();
         }
     }

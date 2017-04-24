@@ -113,11 +113,12 @@ class Screen {
     this.ctx.fillStyle = "black";
     this.ctx.textAlign = "left";
     this.ctx.fillText(`Score: ${this.points}`, 30, 30);
+    this.ctx.fillText(`High Score: ${this.highScore}`, 390, 30);
 
     this.ctx.font = "30px Arial";
     this.ctx.fillStyle = "black";
     this.ctx.textAlign = "center";
-    this.ctx.fillText(`Paddles Left: ${this.paddleCount}`, 850, 30);
+    this.ctx.fillText(`Paddles Left: ${this.paddleCount}`, 860, 30);
 
     this.paddle.draw();
     this.ball.checkPaddleContact(this.paddle.borders);
@@ -126,6 +127,7 @@ class Screen {
         brick.borders = [0, 0, 0, 0];
         brick.width = 0;
         this.points += 100;
+        if (this.points > this.highScore) this.highScore = this.points;
         if (this.points % 4800 === 0) {
           this.ball = new __WEBPACK_IMPORTED_MODULE_1__ball_js__["a" /* default */](this.ctx);
           this.paddle.leftCoord = 425;

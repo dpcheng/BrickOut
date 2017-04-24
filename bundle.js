@@ -96,6 +96,7 @@ class Screen {
   }
 
   createBricks() {
+    this.bricks = [];
     const dimensions = [0, 125, 250, 375, 500, 625, 750, 875, 1000];
     const heights = [50, 85, 120, 155, 190, 225];
     for (let height = 0; height < heights.length; height++) {
@@ -110,13 +111,13 @@ class Screen {
 
     this.ctx.font = "30px Arial";
     this.ctx.fillStyle = "black";
-    this.ctx.textAlign = "center";
-    this.ctx.fillText(`Score: ${this.points}`, 80, 30);
+    this.ctx.textAlign = "left";
+    this.ctx.fillText(`Score: ${this.points}`, 30, 30);
 
     this.ctx.font = "30px Arial";
     this.ctx.fillStyle = "black";
     this.ctx.textAlign = "center";
-    this.ctx.fillText(`Extra Paddles: ${this.paddleCount}`, 850, 30);
+    this.ctx.fillText(`Paddles Left: ${this.paddleCount}`, 850, 30);
 
     this.paddle.draw();
     this.ball.checkPaddleContact(this.paddle.borders);
@@ -170,7 +171,14 @@ class Ball {
   }
 
   launch() {
-    if (!this.launched) {
+    if (this.scrn.paddleCount < 1) {
+      this.scrn.paddleCount = 3;
+      if (this.scrn.points > this.scrn.highScore) this.scrn.highScore = this.scrn.points;
+      this.scrn.points = 0;
+      this.scrn.createBricks();
+      this.launched = true;
+      this.velocity = [0, -2];
+    } else if (!this.launched) {
       this.launched = true;
       this.velocity = [0,-2];
     }
@@ -189,10 +197,16 @@ class Ball {
   }
 
   draw() {
-    if (!this.launched) {
-      this.ctx.font = "30px Arial";
-      this.ctx.fillStyle = "black";
-      this.ctx.textAlign = "center";
+    this.ctx.font = "30px Arial";
+    this.ctx.fillStyle = "black";
+    this.ctx.textAlign = "center";
+
+    if (this.scrn.paddleCount < 1) {
+      this.ctx.fillText("Game Over",500,400);
+      this.ctx.font = "24px Arial";
+      this.ctx.fillText(`Score: ${this.scrn.points}`,500,430);
+      this.ctx.fillText(`Click to start a new game!`,500,500);
+    } else if (!this.launched) {
       this.ctx.fillText("Click to launch ball",500,400);
     }
     this.ctx.beginPath();
@@ -213,7 +227,7 @@ class Ball {
     } else if (this.borders[3] > 740) {
       this.velocity = [0,0];
       this.posY = 692;
-      this.posX = 2000;
+      this.posX = this.scrn.paddle.leftCoord + 75;
       this.launched = false;
       this.scrn.paddleCount -= 1;
     }

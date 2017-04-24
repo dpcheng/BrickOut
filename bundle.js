@@ -85,7 +85,9 @@ class Screen {
     this.paddle = new __WEBPACK_IMPORTED_MODULE_2__paddle_js__["a" /* default */](this.ctx);
     this.bricks = [];
     this.createBricks();
-    this.ball = new __WEBPACK_IMPORTED_MODULE_1__ball_js__["a" /* default */](this.ctx);
+    this.ball = new __WEBPACK_IMPORTED_MODULE_1__ball_js__["a" /* default */](this.ctx, this);
+    this.paddleCount = 3;
+    this.highScore = 0;
     this.points = 0;
   }
 
@@ -110,6 +112,11 @@ class Screen {
     this.ctx.fillStyle = "black";
     this.ctx.textAlign = "center";
     this.ctx.fillText(`Score: ${this.points}`, 80, 30);
+
+    this.ctx.font = "30px Arial";
+    this.ctx.fillStyle = "black";
+    this.ctx.textAlign = "center";
+    this.ctx.fillText(`Extra Paddles: ${this.paddleCount}`, 850, 30);
 
     this.paddle.draw();
     this.ball.checkPaddleContact(this.paddle.borders);
@@ -142,7 +149,7 @@ class Screen {
 
 "use strict";
 class Ball {
-  constructor(ctx, launched = false) {
+  constructor(ctx, scrn, launched = false) {
     this.ctx = ctx;
     this.posX = 500;
     this.posY = 692;
@@ -150,6 +157,7 @@ class Ball {
     this.launched = false;
     this.borders = [ this.posX - this.radius, this.posX + this.radius, this.posY - this.radius, this.posY + this.radius ];
     this.velocity = [0,0];
+    this.scrn = scrn;
     this.canvas = document.getElementById("game-canvas");
     this.canvas.addEventListener("mousemove", this.handleHover.bind(this));
     this.canvas.addEventListener("click", this.launch.bind(this));
@@ -207,6 +215,7 @@ class Ball {
       this.posY = 692;
       this.posX = 2000;
       this.launched = false;
+      this.scrn.paddleCount -= 1;
     }
   }
 

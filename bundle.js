@@ -129,8 +129,11 @@ class Screen {
         this.points += 100;
         if (this.points > this.highScore) this.highScore = this.points;
         if (this.points % 4800 === 0) {
-          this.ball = new __WEBPACK_IMPORTED_MODULE_1__ball_js__["a" /* default */](this.ctx);
           this.paddle.leftCoord = 425;
+          this.ball.launched = false;
+          this.ball.velocity = [0, 0];
+          this.ball.posY = 692;
+          this.ball.posX = this.paddle.leftCoord + 75;
           this.bricks = [];
           this.createBricks();
         }

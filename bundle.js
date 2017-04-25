@@ -109,14 +109,12 @@ class Screen {
   render() {
     this.ctx.clearRect(0, 0, 1000, 1000);
 
-    this.ctx.font = "30px Arial";
+    this.ctx.font = "30px Helvetica";
     this.ctx.fillStyle = "black";
     this.ctx.textAlign = "left";
-    this.ctx.fillText(`Score: ${this.points}`, 30, 30);
-    this.ctx.fillText(`High Score: ${this.highScore}`, 390, 30);
+    this.ctx.fillText(`High Score: ${this.highScore}`, 30, 30);
+    this.ctx.fillText(`Score: ${this.points}`, 418, 30);
 
-    this.ctx.font = "30px Arial";
-    this.ctx.fillStyle = "black";
     this.ctx.textAlign = "center";
     this.ctx.fillText(`Paddles Left: ${this.paddleCount}`, 860, 30);
 
@@ -191,7 +189,7 @@ class Ball {
 
   handleHover(e) {
     if (!this.launched) {
-      this.posX = e.screenX;
+      this.posX = e.layerX;
       if (this.posX < 0) {
         this.posX = 0;
       } else if (this.posX > 1000) {
@@ -332,7 +330,7 @@ class Ball {
 "use strict";
 class Brick {
   constructor(leftCoord, height, ctx) {
-    this.leftCoord = leftCoord;
+    this.leftCoord = leftCoord + 2.5;
     this.height = height;
     this.ctx = ctx;
     this.width = 30;
@@ -370,7 +368,8 @@ class Paddle {
   }
 
   handleHover(e) {
-    this.leftCoord = e.screenX - (this.width / 2);
+    
+    this.leftCoord = e.layerX - (this.width / 2);
     if (this.leftCoord < 0) {
       this.leftCoord = 0;
     } else if (this.leftCoord > (1000 - this.width)) {

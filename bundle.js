@@ -130,7 +130,7 @@ class Screen {
           this.paddle.leftCoord = 425;
           this.ball.launched = false;
           this.ball.velocity = [0, 0];
-          this.ball.posY = 692;
+          this.ball.posY = 592;
           this.ball.posX = this.paddle.leftCoord + 75;
           this.bricks = [];
           this.createBricks();
@@ -156,7 +156,7 @@ class Ball {
   constructor(ctx, scrn, launched = false) {
     this.ctx = ctx;
     this.posX = 500;
-    this.posY = 692;
+    this.posY = 592;
     this.radius = 7.5;
     this.launched = false;
     this.borders = [ this.posX - this.radius, this.posX + this.radius, this.posY - this.radius, this.posY + this.radius ];
@@ -205,12 +205,12 @@ class Ball {
     this.ctx.textAlign = "center";
 
     if (this.scrn.paddleCount < 1) {
-      this.ctx.fillText("Game Over",500,400);
+      this.ctx.fillText("Game Over",500,350);
       this.ctx.font = "24px Arial";
-      this.ctx.fillText(`Score: ${this.scrn.points}`,500,430);
-      this.ctx.fillText(`Click to start a new game!`,500,500);
+      this.ctx.fillText(`Score: ${this.scrn.points}`,500,380);
+      this.ctx.fillText(`Click to start a new game!`,500,450);
     } else if (!this.launched) {
-      this.ctx.fillText("Click to launch ball",500,400);
+      this.ctx.fillText("Click to launch ball",500,350);
     }
     this.ctx.beginPath();
     this.ctx.arc(this.posX, this.posY, this.radius, 0, 2 * Math.PI, false);
@@ -225,11 +225,11 @@ class Ball {
     this.updateBorders();
     if (this.borders[0] < 0 || this.borders[1] > 1000) {
       this.velocity[0] = -this.velocity[0];
-    } else if (this.borders[2] < 0 || this.borders[3] > 750) {
+    } else if (this.borders[2] < 0 || this.borders[3] > 650) {
       this.velocity[1] = -this.velocity[1];
-    } else if (this.borders[3] > 740) {
+    } else if (this.borders[3] > 640) {
       this.velocity = [0,0];
-      this.posY = 692;
+      this.posY = 592;
       this.posX = this.scrn.paddle.leftCoord + 75;
       this.launched = false;
       this.scrn.paddleCount -= 1;
@@ -356,7 +356,7 @@ class Paddle {
     this.ctx = ctx;
     this.leftCoord = 425;
     this.width = 150;
-    this.height = 700;
+    this.height = 600;
     this.borders = [this.leftCoord, this.leftCoord + this.width, this.height, this.height + 20];
     this.canvas = document.getElementById("game-canvas");
     this.canvas.addEventListener("mousemove", this.handleHover.bind(this));

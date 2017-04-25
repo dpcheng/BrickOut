@@ -189,7 +189,7 @@ class Ball {
 
   handleHover(e) {
     if (!this.launched) {
-      this.posX = e.layerX;
+      this.posX = e.offsetX;
       if (this.posX < 0) {
         this.posX = 0;
       } else if (this.posX > 1000) {
@@ -368,8 +368,7 @@ class Paddle {
   }
 
   handleHover(e) {
-    
-    this.leftCoord = e.layerX - (this.width / 2);
+    this.leftCoord = e.offsetX - (this.width / 2);
     if (this.leftCoord < 0) {
       this.leftCoord = 0;
     } else if (this.leftCoord > (1000 - this.width)) {

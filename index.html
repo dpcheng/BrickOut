@@ -8,14 +8,23 @@
     body {
       display: flex;
       justify-content: center;
+      align-items: center;
+      flex-direction: column;
       background-color: grey;
     }
     canvas {
       background-color: lightgrey;
     }
+    .title {
+      font-family: "Helvetica";
+      font-size: 40px;
+      color: black;
+      margin: 15px;
+    }
 
   </style>
   <body>
+    <main class="title">BrickOut</main>
     <canvas id="game-canvas" width="1000" height="650"></canvas>
     <script src="./bundle.js" charset="utf-8"></script>
   </body>

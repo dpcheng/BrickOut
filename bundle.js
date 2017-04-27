@@ -346,9 +346,9 @@ class Brick {
   draw() {
     if (this.width) {
       this.ctx.fillStyle ="lightgrey";
-      this.ctx.fillRect(this.leftCoord, this.height, this.length, this.width);
+      this.ctx.fillRect(this.leftCoord, this.height, this.length + 2, this.width + 2);
       this.ctx.fillStyle ="#E61938";
-      this.ctx.fillRect(this.leftCoord + this.borderWidth, this.height + this.borderWidth, this.length - (this.borderWidth * 2), this.width - (this.borderWidth * 2));
+      this.ctx.fillRect(this.leftCoord + this.borderWidth + 1, this.height + this.borderWidth + 1, this.length - (this.borderWidth * 2), this.width - (this.borderWidth * 2));
     }
   }
 }

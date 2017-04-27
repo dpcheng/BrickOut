@@ -106,7 +106,7 @@ class Screen {
       }
     }
 
-    dimensions = [-75, 50, 175, 300, 425, 550, 675, 800, 925, 1050];
+    dimensions = [-62.5, 62.5, 187.5, 312.5, 437.5, 562.5, 687.5, 812.5, 937.5, 1062.5];
     heights = [125, 195, 265];
     for (let height = 0; height < heights.length; height++) {
       for (let i = 0; i < dimensions.length - 1; i++) {
@@ -387,15 +387,12 @@ class Paddle {
     this.canvas.addEventListener("mousemove", this.handleHover.bind(this));
     this.img = new Image;
     this.img.setAttribute("src", "http://vignette2.wikia.nocookie.net/fallout/images/6/66/Cedar_Baseball_Bat.png/revision/latest?cb=20150619160520");
-
   }
   draw() {
     // this.ctx.fillStyle="black";
     // this.ctx.fillRect(this.leftCoord, this.height, this.width, 20);
-    // this.ctx.fillStyle="blue";
-    // this.ctx.fillRect(this.leftCoord + this.borderWidth, this.height + this.borderWidth, this.width - (this.borderWidth * 3), 20 - (this.borderWidth * 2));
 
-    this.ctx.drawImage(this.img, this.leftCoord - 5, this.height - 20, this.width + 10, 60);
+    this.ctx.drawImage(this.img, this.leftCoord - 5, this.height - 20, this.width + 10, 61);
   }
 
   handleHover(e) {

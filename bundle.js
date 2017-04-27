@@ -260,37 +260,6 @@ class Ball {
 
   checkBrickContact(brickBorder) {
     // [left 0, right 1, top 2, bottom 3]
-    // top or bottom between brick's top or bottom
-    // if ( ( (this.borders[2] > brickBorder[2] &&
-    //   this.borders[2] < brickBorder[3]) ||
-    //   (this.borders[3] > brickBorder[2] &&
-    //     this.borders[3] < brickBorder[3]) ) &&
-    //   ( (this.posX > brickBorder[0] &&
-    //   this.posX < brickBorder[1]) ||
-    //   (this.posX > brickBorder[0] &&
-    //   this.posX < brickBorder[1]) ) ) {
-    //
-    //     this.velocity[1] = -this.velocity[1];
-    //     this.updateBorders();
-    //     return true;
-    //
-    // } else if (( (this.borders[0] > brickBorder[0] &&
-    //   this.borders[0] < brickBorder[1]) ||
-    //   (this.borders[1] > brickBorder[0] &&
-    //     this.borders[1] < brickBorder[1]) ) &&
-    //   ( (this.posY > brickBorder[2] &&
-    //   this.posY < brickBorder[3]) ||
-    //   (this.posY > brickBorder[2] &&
-    //   this.posY < brickBorder[3]) ) ) {
-    //
-    //     this.velocity[0] = -this.velocity[0];
-    //     this.updateBorders();
-    //     return true;
-    //
-    // }
-    // return false;
-
-
     if ( (this.borders[2] > brickBorder[2] &&
       this.borders[2] < brickBorder[3]) ||
       (this.borders[3] > brickBorder[2] &&
@@ -307,8 +276,20 @@ class Ball {
               ( (this.borders[0] > brickBorder[1] - 2) &&
               (this.borders[0] < brickBorder[1] + 2) ) ) {
                 this.velocity[0] = -this.velocity[0];
+                if (Math.abs(brickBorder[0] - this.posX) >
+                Math.abs(brickBorder[1] - this.posX)) {
+                  this.posX = brickBorder[1] + this.radius;
+                } else {
+                  this.posX = brickBorder[0] - this.radius;
+                }
               } else {
                 this.velocity[1] = -this.velocity[1];
+                if (Math.abs(brickBorder[2] - this.posY) >
+                Math.abs(brickBorder[3] - this.posY)) {
+                  this.posY = brickBorder[3] + this.radius;
+                } else {
+                  this.posY = brickBorder[2] - this.radius;
+                }
               }
             this.updateBorders();
             return true;

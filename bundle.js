@@ -97,8 +97,17 @@ class Screen {
 
   createBricks() {
     this.bricks = [];
-    const dimensions = [0, 125, 250, 375, 500, 625, 750, 875, 1000];
-    const heights = [50, 85, 120, 155, 190, 225];
+    let dimensions = [0, 125, 250, 375, 500, 625, 750, 875, 1000];
+    // let heights = [90, 125, 160, 195, 230, 265];
+    let heights = [90, 160, 230];
+    for (let height = 0; height < heights.length; height++) {
+      for (let i = 0; i < dimensions.length - 1; i++) {
+        this.bricks.push(new __WEBPACK_IMPORTED_MODULE_0__brick_js__["a" /* default */](dimensions[i], heights[height], this.ctx));
+      }
+    }
+
+    dimensions = [-75, 50, 175, 300, 425, 550, 675, 800, 925, 1050];
+    heights = [125, 195, 265];
     for (let height = 0; height < heights.length; height++) {
       for (let i = 0; i < dimensions.length - 1; i++) {
         this.bricks.push(new __WEBPACK_IMPORTED_MODULE_0__brick_js__["a" /* default */](dimensions[i], heights[height], this.ctx));
@@ -127,7 +136,7 @@ class Screen {
         brick.width = 0;
         this.points += 100;
         if (this.points > this.highScore) this.highScore = this.points;
-        if (this.points % 4800 === 0) {
+        if (this.points % 5100 === 0) {
           this.paddle.leftCoord = 425;
           this.ball.launched = false;
           this.ball.velocity = [0, 0];
@@ -312,20 +321,21 @@ class Ball {
 "use strict";
 class Brick {
   constructor(leftCoord, height, ctx) {
-    this.leftCoord = leftCoord + 2.5;
+    this.leftCoord = leftCoord;
     this.height = height;
     this.ctx = ctx;
-    this.width = 30;
-    this.borderWidth = 3;
-    this.borders = [this.leftCoord, this.leftCoord + 120, this.height, this.height + this.width];
+    this.width = 35;
+    this.borderWidth = 2;
+    this.length = 125;
+    this.borders = [this.leftCoord, this.leftCoord + this.length, this.height, this.height + this.width];
   }
 
   draw() {
     if (this.width) {
       this.ctx.fillStyle ="lightgrey";
-      this.ctx.fillRect(this.leftCoord, this.height, 120, this.width);
+      this.ctx.fillRect(this.leftCoord, this.height, this.length, this.width);
       this.ctx.fillStyle ="#E61938";
-      this.ctx.fillRect(this.leftCoord + this.borderWidth, this.height + this.borderWidth, 120 - (this.borderWidth * 2), this.width - (this.borderWidth * 2));
+      this.ctx.fillRect(this.leftCoord + this.borderWidth, this.height + this.borderWidth, this.length - (this.borderWidth * 2), this.width - (this.borderWidth * 2));
     }
   }
 }

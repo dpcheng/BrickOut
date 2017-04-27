@@ -202,7 +202,7 @@ class Ball {
 
   draw() {
     this.ctx.font = "30px Arial";
-    this.ctx.fillStyle = "black";
+    this.ctx.fillStyle = "lightgrey";
     this.ctx.textAlign = "center";
 
     if (this.scrn.paddleCount < 1) {
@@ -213,12 +213,12 @@ class Ball {
     } else if (!this.launched) {
       this.ctx.fillText("Click to launch",500,350);
     }
+    this.ctx.fillStyle = '#D4F700';
     this.ctx.beginPath();
     this.ctx.arc(this.posX, this.posY, this.radius, 0, 2 * Math.PI, false);
-    this.ctx.fillStyle = 'green';
     this.ctx.fill();
     this.ctx.lineWidth = 1;
-    this.ctx.strokeStyle = '#003300';
+    this.ctx.strokeStyle = 'lightgrey';
     this.ctx.stroke();
   }
 
@@ -316,14 +316,17 @@ class Brick {
     this.height = height;
     this.ctx = ctx;
     this.width = 30;
+    this.borderWidth = 3;
     this.borders = [this.leftCoord, this.leftCoord + 120, this.height, this.height + this.width];
   }
 
   draw() {
-    this.ctx.fillStyle="darkgray";
-    this.ctx.fillRect(this.leftCoord, this.height, 120, this.width);
-    this.ctx.fillStyle="darkred";
-    this.ctx.fillRect(this.leftCoord + 5, this.height + 5, 110, this.width - 10);
+    if (this.width) {
+      this.ctx.fillStyle ="lightgrey";
+      this.ctx.fillRect(this.leftCoord, this.height, 120, this.width);
+      this.ctx.fillStyle ="#E61938";
+      this.ctx.fillRect(this.leftCoord + this.borderWidth, this.height + this.borderWidth, 120 - (this.borderWidth * 2), this.width - (this.borderWidth * 2));
+    }
   }
 }
 
@@ -341,14 +344,17 @@ class Paddle {
     this.leftCoord = 425;
     this.width = 150;
     this.height = 600;
+    this.borderWidth = 1;
     this.borders = [this.leftCoord, this.leftCoord + this.width, this.height, this.height + 20];
     this.canvas = document.getElementById("game-canvas");
     this.canvas.addEventListener("mousemove", this.handleHover.bind(this));
   }
 
   draw() {
-    this.ctx.fillStyle="blue";
+    this.ctx.fillStyle="black";
     this.ctx.fillRect(this.leftCoord, this.height, this.width, 20);
+    this.ctx.fillStyle="blue";
+    this.ctx.fillRect(this.leftCoord + this.borderWidth, this.height + this.borderWidth, this.width - (this.borderWidth * 3), 20 - (this.borderWidth * 2));
   }
 
   handleHover(e) {

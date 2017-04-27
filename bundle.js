@@ -108,14 +108,15 @@ class Screen {
 
   render() {
     this.ctx.clearRect(0, 0, 1000, 1000);
-
+    this.ctx.fillStyle="grey";
+    this.ctx.fillRect(0, 0, 1000, 40);
     this.ctx.font = "30px Helvetica";
     this.ctx.fillStyle = "black";
     this.ctx.textAlign = "left";
     this.ctx.fillText(`High Score: ${this.highScore}`, 30, 30);
-    this.ctx.fillText(`Score: ${this.points}`, 418, 30);
 
     this.ctx.textAlign = "center";
+    this.ctx.fillText(`Score: ${this.points}`, 500, 30);
     this.ctx.fillText(`Paddles Left: ${this.paddleCount}`, 860, 30);
 
     this.paddle.draw();
@@ -210,7 +211,7 @@ class Ball {
       this.ctx.fillText(`Score: ${this.scrn.points}`,500,380);
       this.ctx.fillText(`Click to start a new game!`,500,450);
     } else if (!this.launched) {
-      this.ctx.fillText("Click to launch ball",500,350);
+      this.ctx.fillText("Click to launch",500,350);
     }
     this.ctx.beginPath();
     this.ctx.arc(this.posX, this.posY, this.radius, 0, 2 * Math.PI, false);
@@ -223,9 +224,9 @@ class Ball {
 
   wallBounce() {
     this.updateBorders();
-    if (this.borders[0] < 0 || this.borders[1] > 1000) {
+    if (this.borders[0] < 40 || this.borders[1] > 1000) {
       this.velocity[0] = -this.velocity[0];
-    } else if (this.borders[2] < 0 || this.borders[3] > 650) {
+    } else if (this.borders[2] < 40 || this.borders[3] > 650) {
       this.velocity[1] = -this.velocity[1];
     } else if (this.borders[3] > 640) {
       this.velocity = [0,0];
@@ -319,8 +320,10 @@ class Brick {
   }
 
   draw() {
-    this.ctx.fillStyle="#FF0000";
+    this.ctx.fillStyle="darkgray";
     this.ctx.fillRect(this.leftCoord, this.height, 120, this.width);
+    this.ctx.fillStyle="darkred";
+    this.ctx.fillRect(this.leftCoord + 5, this.height + 5, 110, this.width - 10);
   }
 }
 

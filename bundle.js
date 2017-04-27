@@ -172,6 +172,7 @@ class Ball {
     this.borders = [ this.posX - this.radius, this.posX + this.radius, this.posY - this.radius, this.posY + this.radius ];
     this.velocity = [0,0];
     this.scrn = scrn;
+    this.drawText = this.drawText.bind(this);
     this.canvas = document.getElementById("game-canvas");
     this.canvas.addEventListener("mousemove", this.handleHover.bind(this));
     this.canvas.addEventListener("click", this.launch.bind(this));
@@ -209,18 +210,30 @@ class Ball {
     }
   }
 
+  drawText(text, x, y) {
+    this.ctx.strokeStyle = 'black';
+
+    this.ctx.miterLimit = 2;
+    this.ctx.lineJoin = 'circle';
+
+    this.ctx.lineWidth = 6;
+    this.ctx.strokeText(text, x, y);
+    this.ctx.lineWidth = 1;
+    this.ctx.fillText(text, x, y);
+  }
+
   draw() {
     this.ctx.font = "30px Arial";
-    this.ctx.fillStyle = "lightgrey";
     this.ctx.textAlign = "center";
-
     if (this.scrn.paddleCount < 1) {
-      this.ctx.fillText("Game Over",500,350);
+      this.ctx.fillStyle = "lightred";
+      this.drawText("Game Over",500,350);
       this.ctx.font = "24px Arial";
-      this.ctx.fillText(`Score: ${this.scrn.points}`,500,380);
-      this.ctx.fillText(`Click to start a new game!`,500,450);
+      this.drawText(`Score: ${this.scrn.points}`,500,380);
+      this.drawText(`Click to start a new game!`,500,450);
     } else if (!this.launched) {
-      this.ctx.fillText("Click to launch",500,350);
+      this.ctx.fillStyle = "white";
+      this.drawText("Click to launch",500,400);
     }
     this.ctx.fillStyle = '#D4F700';
     this.ctx.beginPath();

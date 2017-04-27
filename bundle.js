@@ -97,17 +97,19 @@ class Screen {
 
   createBricks() {
     this.bricks = [];
-    let dimensions = [0, 125, 250, 375, 500, 625, 750, 875, 1000];
-    // let heights = [90, 125, 160, 195, 230, 265];
-    let heights = [90, 160, 230];
-    for (let height = 0; height < heights.length; height++) {
-      for (let i = 0; i < dimensions.length - 1; i++) {
-        this.bricks.push(new __WEBPACK_IMPORTED_MODULE_0__brick_js__["a" /* default */](dimensions[i], heights[height], this.ctx));
-      }
-    }
 
+    // odd layers of bricks
+    let dimensions = [0, 125, 250, 375, 500, 625, 750, 875, 1000];
+    let heights = [90, 160, 230];
+    this.createBrick(dimensions, heights);
+
+    // even layers of bricks
     dimensions = [-62.5, 62.5, 187.5, 312.5, 437.5, 562.5, 687.5, 812.5, 937.5, 1062.5];
     heights = [125, 195, 265];
+    this.createBrick(dimensions, heights);
+  }
+
+  createBrick(dimensions, heights) {
     for (let height = 0; height < heights.length; height++) {
       for (let i = 0; i < dimensions.length - 1; i++) {
         this.bricks.push(new __WEBPACK_IMPORTED_MODULE_0__brick_js__["a" /* default */](dimensions[i], heights[height], this.ctx));
@@ -172,7 +174,6 @@ class Ball {
     this.borders = [ this.posX - this.radius, this.posX + this.radius, this.posY - this.radius, this.posY + this.radius ];
     this.velocity = [0,0];
     this.scrn = scrn;
-    this.drawText = this.drawText.bind(this);
     this.canvas = document.getElementById("game-canvas");
     this.canvas.addEventListener("mousemove", this.handleHover.bind(this));
     this.canvas.addEventListener("click", this.launch.bind(this));
@@ -236,6 +237,10 @@ class Ball {
       this.drawText("Click to throw baseball",500,400);
     }
 
+    this.drawBall();
+  }
+
+  drawBall() {
     // drawing the baseball
     this.ctx.fillStyle = 'white';
     this.ctx.beginPath();

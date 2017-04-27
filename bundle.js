@@ -235,12 +235,25 @@ class Ball {
       this.ctx.fillStyle = "white";
       this.drawText("Click to launch",500,400);
     }
-    this.ctx.fillStyle = '#D4F700';
+
+    // drawing the baseball
+    this.ctx.fillStyle = 'white';
     this.ctx.beginPath();
     this.ctx.arc(this.posX, this.posY, this.radius, 0, 2 * Math.PI, false);
     this.ctx.fill();
     this.ctx.lineWidth = 1;
-    this.ctx.strokeStyle = 'lightgrey';
+    this.ctx.strokeStyle = 'black';
+    this.ctx.stroke();
+
+    // drawing the baseball's stitches
+    this.ctx.beginPath();
+    this.ctx.lineWidth = 1;
+    this.ctx.strokeStyle = 'red';
+    this.ctx.moveTo(this.posX - (this.radius / 1.5), this.posY - (this.radius / 1.5));
+    this.ctx.bezierCurveTo(this.posX - 1, this.posY, this.posX - 1, this.posY, this.posX - (this.radius / 1.5), this.posY + (this.radius / 1.5));
+
+    this.ctx.moveTo(this.posX + (this.radius / 1.5), this.posY - (this.radius / 1.5));
+    this.ctx.bezierCurveTo(this.posX + 1, this.posY, this.posX + 1, this.posY, this.posX + (this.radius / 1.5), this.posY + (this.radius / 1.5));
     this.ctx.stroke();
   }
 

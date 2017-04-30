@@ -119,15 +119,21 @@ class Screen {
 
   render() {
     this.ctx.clearRect(0, 0, 1000, 1000);
-    this.ctx.fillStyle="grey";
+    this.ctx.fillStyle="lightgrey";
     this.ctx.fillRect(0, 0, 1000, 40);
     this.ctx.font = "30px Helvetica";
     this.ctx.fillStyle = "black";
+
+    if (this.highScore !== 0 && this.highScore === this.points) {
+      this.ctx.fillStyle = "darkgreen";
+    }
     this.ctx.textAlign = "left";
     this.ctx.fillText(`High Score: ${this.highScore}`, 30, 30);
 
+    this.ctx.fillStyle = "black";
     this.ctx.textAlign = "center";
     this.ctx.fillText(`Score: ${this.points}`, 500, 30);
+    if (this.paddleCount < 2) this.ctx.fillStyle = "red";
     this.ctx.fillText(`Baseballs Left: ${this.paddleCount}`, 860, 30);
 
     this.paddle.draw();
@@ -227,7 +233,7 @@ class Ball {
     this.ctx.font = "30px Arial";
     this.ctx.textAlign = "center";
     if (this.scrn.paddleCount < 1) {
-      this.ctx.fillStyle = "lightred";
+      this.ctx.fillStyle = "#E61938";
       this.drawText("Game Over",500,350);
       this.ctx.font = "24px Arial";
       this.drawText(`Score: ${this.scrn.points}`,500,380);

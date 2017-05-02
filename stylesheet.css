@@ -1,0 +1,38 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: lightgrey;
+}
+
+canvas {
+  background-color: lightgrey;
+  background-size: 1000px 685px;
+  /*background-image: url("https://previews.123rf.com/images/pattanwit/pattanwit1505/pattanwit150500424/40348581-Background-of-old-brick-wall-texture-with-grass-ground--Stock-Photo.jpg");*/
+  /*background-image: url("http://www.ceramicindustry.com/ext/resources/Default_Images/CI-Generic-Brick-Structural-Clay.jpg?1434648369");*/
+  background-image: url("https://image.freepik.com/free-vector/room-interior-with-parquet-and-brick-wall_23-2147512498.jpg");
+}
+
+canvas:hover {
+  cursor: none;
+}
+
+/* @font-face kit by Fonts2u (http://www.fonts2u.com) */
+@font-face {
+  font-family:"101! Brick Layer";
+  src: url("101__Brick_Layer.eot?") format("eot"),url("101__Brick_Layer.woff") format("woff"),url("101__Brick_Layer.ttf") format("truetype"),url("101__Brick_Layer.svg#101BrickLayer") format("svg");
+  font-weight:normal;
+  font-style:normal;
+}
+
+.title {
+  font-family: "101! Brick Layer";
+  font-size: 80px;
+  color: #E61938;
+  padding: 10px;
+
+  /*background-color: lightblue;*/
+  width: 100%;
+  text-align: center;
+}

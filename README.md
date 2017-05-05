@@ -1,4 +1,4 @@
-# BrickOut
+# BrickOut Proposal
 
 ## Background
 BrickOut is inspired by the video game Breakout. Breakout was released by Atari in 1976. The player controls a paddle that can only travel horizontally along the bottom of the screen. There are 8 rows of bricks near the top of the screen. The player must bounce a ball from the paddle and hit each brick to clear them. The ball bounces off each surface except the bottom of the screen. If the ball touches the bottom of the screen, the player loses a paddle. The player has 2 paddles in reserve, with 3 total. Once the player no longer has any of the paddles, the player loses. The player passes the level when all the bricks are cleared.

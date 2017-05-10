@@ -1,69 +1,52 @@
-# BrickOut Proposal
+# BrickOut
 
-## Background
-BrickOut is inspired by the video game Breakout. Breakout was released by Atari in 1976. The player controls a paddle that can only travel horizontally along the bottom of the screen. There are 8 rows of bricks near the top of the screen. The player must bounce a ball from the paddle and hit each brick to clear them. The ball bounces off each surface except the bottom of the screen. If the ball touches the bottom of the screen, the player loses a paddle. The player has 2 paddles in reserve, with 3 total. Once the player no longer has any of the paddles, the player loses. The player passes the level when all the bricks are cleared.
+![BrickOut][game]
 
-## Functionality & MVP
-In BrickOut, the user is able to:
-- [ ] Start, pause, or reset the game
-- [ ] Move the paddle with the left/right arrows, or direct the paddle using the mouse (Bonus Feature)
-- [ ] Bounce the ball by placing the paddle in the ball's path
-- [ ] Clear bricks when in contact with the bouncing ball
+[BrickOut][brickout] is a browser game inspired by the arcade game Breakout. The objective is to clear as many bricks as possible by bouncing the baseball between the bricks and the baseball bat. The game ends when the player misses three baseballs.
 
-This project will also include:
-- [ ] A modal describing the rules of BrickOut
-- [ ] A production README
+## Features
 
-## Wireframes
-This project will have the game title at the top of the window. In the middle will be the game screen. Below the game will be a picture of the controls and a button to open a How To Play modal. The modal will explain the game rules and power-ups (see Bonus Features). Next to the controls will be links to my LinkedIn and Github.
+  - Intuitive mouse control of baseball bat
+  - Custom baseball bounce physics
+  - Score and high score tracking
 
-![BrickOut wireframe][wireframe]
+## Project Design
+Design of BrickOut started with a [proposal][proposal] to aid in organization during development.
 
-## Architecture and Technology
-BrickOut will require the following technologies:
-* JavaScript and jQuery for Game logic
-* Easel.js with HTML 5 Canvas for rendering the DOM and game elements
-* Keymapper for handling user input
-* Webpack to consolidate the various scripts into a bundle
+## Technologies
 
-Along with the entry file, there are four additional scripts:
+* JavaScript
+  - Object-oriented programming of Bricks, Baseballs, Bat, and the interactions between the objects.
+* HTML Canvas
+  - Renders each object as the game runs.
+* CSS
+  - Styles the title, background, and sidebars.
 
-`screen.js`: This script will manipulate and render the paddle, ball, and bricks elements.
+## Future Features
 
-`paddle.js`: This script will handle user input and move the paddle accordingly.
+In addition to the features listed above, there are several features I would like to add in the future.
 
-`ball.js`: This script will alter the ball trajectory, bounces, and contact with paddle/bricks.
+### Power-ups
 
-`brick.js`: This script will house the logic of clearing when in contact with the ball, and occasionally dropping power-ups (see Bonus Features)
+Each power-up will last until a baseball touches the floor.
 
-## Implementation Timeline
-**Day 1**: Set up webpack and install `Easel.js` and `Keymapper`. Write the entry file and skeleton of the 4 scripts. Learn how to use `Easel.js` and `Keymapper`.
-* Have a site that uses the bundle script with all 4 scripts incorporated
-* Render the game screen and paddle
-* Be able to move the paddle with user input
+  - Long Bat
+    * This will extend the length of the baseball bat.
 
-**Day 2**: Add the ball and bricks to the game
-* Add a ball that bounces off each surface
-* Have different colored bricks at the top of the screen
+  - Sticky Bat
+    * When the baseball comes in contact with the bat, the baseball will be "stuck". The player can then reposition the bat before clicking and launching the ball at will.
 
-**Day 3**: Code the rules into the game
-* Bricks disappear when the ball hits them
-* Ball disappears when hitting the bottom of the screen. Reduces the paddle count
-* Game ends when all paddles are gone or all bricks cleared
+### Power-downs
 
-**Day 4**: Style and add additional content to the page
-* Style the paddle, balls, bricks, and background of the game
-* Add controls and rules modal
-* Include the Github and LinkedIn links
+Each power-down will last either 15 seconds or until a baseball touches the floor (whichever occurs first).
 
-## Bonus Features
-Once I complete the MVPs, I may update the game with these features:
-* Control the paddle using the mouse instead of keyboard inputs
-* Bricks will occasionally drop power-ups towards the bottom of the screen. If the paddle touches the power-up, the gameplay will be altered. Potential power-ups are:
-  * Longer paddle: Increase the size of the paddle
-  * Sticky paddle: Can 'catch' the ball, reposition the paddle, and press the button to release the ball at will
-  * Multi-ball: The ball splits into 3. The player loses the paddle when all 3 balls have disappeared
-  * Strong ball: The ball doesn't bounce on contact with the brick, but clears all bricks in its path
+  - Short Bat
+    * The baseball bat's length is decreased.
+
+  - Fast Ball
+    * The speed of the baseball is significantly increased.
 
 
-[wireframe]: ./assets/wireframe.png
+[brickout]: https://dpcheng.github.io/BrickOut/
+[game]: ./docs/game.png
+[proposal]: ./docs/proposal.md

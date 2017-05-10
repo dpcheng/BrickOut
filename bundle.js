@@ -398,11 +398,11 @@ class Paddle {
     this.canvas.addEventListener("mousemove", this.handleHover.bind(this));
     this.img = new Image;
     this.img.setAttribute("src", "http://vignette2.wikia.nocookie.net/fallout/images/6/66/Cedar_Baseball_Bat.png/revision/latest?cb=20150619160520");
+    // this.img.setAttribute("src", "https://www.clipartsgram.com/image/1520290234-baseball-bat-baseball-rat-clipart-cliparthut-free-clipart.png");
   }
   draw() {
     // this.ctx.fillStyle="black";
     // this.ctx.fillRect(this.leftCoord, this.height, this.width, 20);
-
     this.ctx.drawImage(this.img, this.leftCoord - 5, this.height - 20, this.width + 10, 61);
   }
 

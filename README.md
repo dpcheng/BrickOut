@@ -66,4 +66,4 @@ Once I complete the MVPs, I may update the game with these features:
   * Strong ball: The ball doesn't bounce on contact with the brick, but clears all bricks in its path
 
 
-[wireframe]: ./wireframe.png
+[wireframe]: ./assets/wireframe.png

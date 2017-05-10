@@ -20,7 +20,7 @@ canvas:hover {
 /* @font-face kit by Fonts2u (http://www.fonts2u.com) */
 @font-face {
   font-family:"101! Brick Layer";
-  src: url("101__Brick_Layer.eot?") format("eot"),url("101__Brick_Layer.woff") format("woff"),url("101__Brick_Layer.ttf") format("truetype"),url("101__Brick_Layer.svg#101BrickLayer") format("svg");
+  src: url("../assets/101__Brick_Layer.eot?") format("eot"), url("../assets/101__Brick_Layer.woff") format("font-woff"), url("../assets/101__Brick_Layer.ttf") format("truetype"), url("../assets/101__Brick_Layer.svg#101BrickLayer") format("svg");
   font-weight:normal;
   font-style:normal;
 }

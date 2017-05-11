@@ -1,6 +1,6 @@
 # BrickOut
 
-![BrickOut][game]
+[![BrickOut][game]][brickout]
 
 [BrickOut][brickout] is a browser game inspired by the arcade game Breakout. The objective is to clear as many bricks as possible by bouncing the baseball between the bricks and the baseball bat. The game ends when the player misses three baseballs.
 

@@ -236,11 +236,17 @@ class Ball {
       this.ctx.fillStyle = "red";
       this.drawText("Game Over",500,350);
       this.ctx.font = "24px Arial";
-      this.drawText(`Score: ${this.scrn.points}`,500,380);
-      this.drawText(`Click to start a new game!`,500,450);
+      this.drawText(`Score: ${this.scrn.points}`, 500, 380);
+      this.drawText(`Click to start a new game!`, 500, 450);
     } else if (!this.launched) {
       this.ctx.fillStyle = "white";
-      this.drawText("Click to throw baseball",500,400);
+      if (this.scrn.paddleCount == 3) {
+        this.drawText("Clear as many Bricks as you can!", 500, 350);
+        this.drawText("Keep the baseball from falling by moving the bat with your mouse", 500, 400);
+        this.drawText("Click to start!", 500, 450);
+      } else {
+        this.drawText("Click to throw baseball", 500, 400);
+      }
     }
 
     this.drawBall();

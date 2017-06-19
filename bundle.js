@@ -198,10 +198,10 @@ class Ball {
       this.scrn.points = 0;
       this.scrn.createBricks();
       this.launched = true;
-      this.velocity = [0, -2];
+      this.velocity = [0, -1.5];
     } else if (!this.launched) {
       this.launched = true;
-      this.velocity = [0,-2];
+      this.velocity = [0,-1.5];
     }
   }
 
@@ -305,8 +305,8 @@ class Ball {
           (this.borders[1] > paddleBorder[0] &&
             this.borders[1] < paddleBorder[1]) ) {
             this.posY = paddleBorder[2] - this.radius;
-            this.velocity[0] = -((paddleBorder[1] - 75 - this.posX) / 75) * 3;
-            this.velocity[1] = -this.velocity[1] - 0.15;
+            this.velocity[0] = -((paddleBorder[1] - 75 - this.posX) / 75) * 2;
+            this.velocity[1] = -this.velocity[1] - 0.10;
             this.updateBorders();
         }
     }
@@ -417,11 +417,8 @@ class Paddle {
     this.canvas.addEventListener("mousemove", this.handleHover.bind(this));
     this.img = new Image;
     this.img.setAttribute("src", "http://vignette2.wikia.nocookie.net/fallout/images/6/66/Cedar_Baseball_Bat.png/revision/latest?cb=20150619160520");
-    // this.img.setAttribute("src", "https://www.clipartsgram.com/image/1520290234-baseball-bat-baseball-rat-clipart-cliparthut-free-clipart.png");
   }
   draw() {
-    // this.ctx.fillStyle="black";
-    // this.ctx.fillRect(this.leftCoord, this.height, this.width, 20);
     this.ctx.drawImage(this.img, this.leftCoord - 5, this.height - 20, this.width + 10, 61);
   }
 

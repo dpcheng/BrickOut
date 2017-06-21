@@ -27,9 +27,11 @@ canvas:hover {
 
 .title {
   font-family: "101! Brick Layer";
-  font-size: 80px;
+  font-size: 90px;
   color: #E61938;
   padding: 10px;
   width: 100%;
   text-align: center;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: black;
 }

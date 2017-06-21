@@ -416,7 +416,7 @@ class Paddle {
     this.canvas = document.getElementById("game-canvas");
     this.canvas.addEventListener("mousemove", this.handleHover.bind(this));
     this.img = new Image;
-    this.img.setAttribute("src", "http://vignette2.wikia.nocookie.net/fallout/images/6/66/Cedar_Baseball_Bat.png/revision/latest?cb=20150619160520");
+    this.img.setAttribute("src", "https://res.cloudinary.com/dh6zremqy/image/upload/c_scale,h_50,w_200/v1498026742/Cedar_Baseball_Bat_c1jjsa.png");
   }
   draw() {
     this.ctx.drawImage(this.img, this.leftCoord - 5, this.height - 20, this.width + 10, 61);

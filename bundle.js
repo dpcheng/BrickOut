@@ -119,18 +119,18 @@ class Screen {
 
   render() {
     this.ctx.clearRect(0, 0, 1000, 1000);
-    this.ctx.fillStyle="grey";
+    this.ctx.fillStyle="#232323";
     this.ctx.fillRect(0, 0, 1000, 40);
     this.ctx.font = "30px Helvetica";
-    this.ctx.fillStyle = "black";
+    this.ctx.fillStyle = "darkgrey";
 
     if (this.highScore !== 0 && this.highScore === this.points) {
-      this.ctx.fillStyle = "darkgreen";
+      this.ctx.fillStyle = "green";
     }
     this.ctx.textAlign = "left";
     this.ctx.fillText(`High Score: ${this.highScore}`, 30, 30);
 
-    this.ctx.fillStyle = "black";
+    this.ctx.fillStyle = "darkgrey";
     this.ctx.textAlign = "center";
     this.ctx.fillText(`Score: ${this.points}`, 500, 30);
     if (this.paddleCount < 2) this.ctx.fillStyle = "red";
@@ -242,10 +242,10 @@ class Ball {
       this.ctx.fillStyle = "white";
       if (this.scrn.paddleCount == 3) {
         this.drawText("Clear as many Bricks as you can!", 500, 350);
-        this.drawText("Keep the baseball from falling by moving the bat with your mouse", 500, 400);
+        this.drawText("Use your mouse to move the bat and keep the baseball from falling", 500, 400);
         this.drawText("Click to start!", 500, 450);
       } else {
-        this.drawText("Click to throw baseball", 500, 400);
+        this.drawText("Click to throw baseball!", 500, 400);
       }
     }
 

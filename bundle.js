@@ -236,8 +236,13 @@ class Ball {
       this.ctx.fillStyle = "red";
       this.drawText("Game Over",500,350);
       this.ctx.font = "24px Arial";
+      if (this.scrn.points === this.scrn.highScore) {
+        this.ctx.fillStyle = "green";
+        this.drawText('New Highscore!', 500, 420);
+        this.ctx.fillStyle = "red";
+      }
       this.drawText(`Score: ${this.scrn.points}`, 500, 380);
-      this.drawText(`Click to start a new game!`, 500, 450);
+      this.drawText(`Click to start a new game!`, 500, 460);
     } else if (!this.launched) {
       this.ctx.fillStyle = "white";
       if (this.scrn.paddleCount == 3) {

@@ -3,7 +3,8 @@ body {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  background-image: url("https://res.cloudinary.com/dh6zremqy/image/upload/q_40/v1498025712/Black-Brick-Wall-Background_vkkkk2.jpg")
+  background-image: url("https://res.cloudinary.com/dh6zremqy/image/upload/q_40/v1498025712/Black-Brick-Wall-Background_vkkkk2.jpg");
+  background-size: cover;
 }
 
 canvas {

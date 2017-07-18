@@ -131,5 +131,5 @@ Each power-down will last either 15 seconds or until a baseball touches the floo
 
 
 [brickout]: https://dpcheng.github.io/BrickOut/
-[game]: ./docs/game.png
+[game]: ./docs/game.png "BrickOut game screen"
 [proposal]: ./docs/proposal.md
